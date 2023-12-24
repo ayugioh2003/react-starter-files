@@ -8,18 +8,49 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script type="text/babel">
 // #1 Async function 的本質
+// 1. async function 本身就是 promise
+// await 運算子，後方需要加入 Promise
+
 // const asyncFn = async () => {
 //   const res = await axios.get('https://jsonplaceholder.typicode.com/todos/1');
 // }
-
+// console.log(asyncFn())
 
 
 // #2 Async function 回傳值
+// const asyncFn = async () => {
+//   const res = await axios.get('https://jsonplaceholder.typicode.com/todos/1');
+//   console.log('res', res)
+//   return res
+// }
+
+// asyncFn()
+//   .then(res => {
+//     console.log(res)
+//   })
+
 
 // 取得 async function 回傳值得方法
 
 
 // #3 Async function 錯誤處理
+// promise catch
+// const asyncFn = async () => {
+//   try {
+//     const res = await axios.get('https://jsonplaceholder.typicode.com/todosRRR/1');
+//     console.log(res)
+//     return res
+//   } catch (error) {
+//     throw error
+//   }
+// }
+// asyncFn()
+//   .then(res => {
+//     console.log('Promise res', res)
+//   })
+//   .catch(error => {
+//     console.log('Promise error', error)
+//   })
 
 
 
@@ -30,7 +61,7 @@ const App = () => {
   React.useEffect(() => {
     (async () => {
       const res = await axios.get('https://jsonplaceholder.typicode.com/todos/1');
-      console.log(res);
+      console.log('useEffect', res);
       setData(res.data);
     })();
   }, []);
