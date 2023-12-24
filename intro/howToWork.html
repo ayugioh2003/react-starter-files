@@ -5,8 +5,19 @@
 <!-- 🔥🔥練習開始🔥🔥 -->
 <div id="root"></div>
 <script type="text/babel">
+// function App() {
+//   return <h1>React 我來了 <small className="text-danger">{new Date().toLocaleDateString() }</small></h1>
+// }
+
 function App() {
-  return <h1>React 我來了 <small className="text-danger">{new Date().toLocaleDateString() }</small></h1>
+  // 標籤、HTML 屬性
+  return React.createElement('h1', null, 'React 我來了', 
+    React.createElement('small', { 
+      className: 'text-danger',
+      title: '時間'
+    }, new Date().toLocaleDateString()),
+    '結尾',
+  )
 }
 
 const el = document.getElementById('root');
