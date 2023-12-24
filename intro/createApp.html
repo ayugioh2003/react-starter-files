@@ -7,6 +7,30 @@
 <!-- https://reactjs.org/docs/cdn-links.html#gatsby-focus-wrapper -->
 <!-- https://reactjs.org/docs/add-react-to-a-website.html#quickly-try-jsx -->
 
+<!-- 一、載入 -->
+<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+<!-- 三、加入 root 元素 -->
+<div id="root"></div>
+
+<script type="text/babel">
+  // 二、檢查是否有正確載入
+  console.log(React, ReactDOM)
+
+  // 四、建立 react 元件
+  function App() {
+    return <h1>React 我來了</h1>
+  }
+
+  // render
+  const el = document.getElementById('root')
+  const root = ReactDOM.createRoot(el)
+
+  root.render(<App />)
+</script>
+
 <!-- 補充說明：定義 App 元件時，可自訂名稱但請使用大寫做開頭 -->
 <!-- 詳細說明文件：https://zh-hant.reactjs.org/docs/jsx-in-depth.html#user-defined-components-must-be-capitalized -->
 <!-- 🙇🙇練習結束🙇🙇 -->
