@@ -72,9 +72,28 @@ const promiseSetTimeout = (status) => {
 // #3 實戰取得遠端資料
 // #3-1
 // https://github.com/axios/axios
+// console.dir(axios)
+// axios.get('https://randomuser.me/api')
+//   .then(res => {
+//     console.log(res.data.results)
+//     return axios.get('https://randomuser.me/api')
+//   })
+//   .then(res => {
+//     console.log(res.data.results)
+//   })
+
 
 // #3-2 記得捕捉錯誤，Axios 錯誤捕捉技巧
 // https://randomuser.me/
+axios.get('https://randomuser.me/ap')
+  .then(res => {
+    console.log(res.data.results)
+  })
+  .catch(err => {
+    console.log(err)
+    console.log(err.message)
+  })
+
 
 </script>
 <!-- 🙇🙇練習結束🙇🙇 -->
