@@ -6,35 +6,53 @@
 <div id="root"></div>
 <script type="text/babel">
 // #1 箭頭函式改寫
-function fn(a, b) {
-  return a * b;
-}
-console.log(fn(2, 4));
+// function fn(a, b) {
+//   return a * b;
+// }
+// 當參數只有一個時，可以把尖括號移除
+// const fn = (a, b) => {
+//   return a * b;
+// }
+// console.log(fn(2, 4));
+
+// 回傳一個物件時，補上小括號
+// const person = {
+//   name: '小明'
+// }
+// const fn = () => ({ name: '小明'})
 
 
 // #2 箭頭函式的 this 變化（React Hook 寫法不太會踩到這個雷）
-// var name = '全域'
-// const person = {
-//   name: '小明',
-//   callName: function () { 
-//     console.log('1', this.name); // 1 小明
-//     setTimeout(function () {
-//       console.log('2', this.name); // 2
-//       console.log('3', this); // 3
-//     }, 10);
-//   },
-// }
+var name = '全域'
+const person = {
+  name: '小明',
+  callName: function () { 
+    console.log('1', this.name); // 1 小明
+    setTimeout(function () {
+      console.log('2', this.name); // 2 全域
+      console.log('3', this); // 3 window
+    }, 10);
+  },
+  callName2: function() { 
+    console.log('1', this.name); // 1 全域
+    setTimeout(() => {
+      console.log('2', this.name); // 2 小明
+      console.log('3', this); // 3 person
+    }, 10);
+  },
+}
 // person.callName();
+// person.callName2();
 
 
 
 // #3 箭頭函式在 React 的運用
-function Card() {
+const Card = () => {
   return <div className="card">
     <div className="card-body">這是一張卡片</div>
   </div>
 }
-function App() {
+const App = () => {
   return (
     <div>
       <Card></Card>
