@@ -31,6 +31,7 @@ console.log(obj.fn());
 // }
 
 // console.log(obj2.fn());
+// 會噴錯。讀取不到 myName 的值，this 是 undefined
 
 
 // =====
@@ -38,7 +39,7 @@ console.log(obj.fn());
 // #2-1 物件內的函式
 // const obj3 = {
 //   myName: '物件',
-//   fn: function() { // 請改為縮寫
+//   fn() { // 請改為縮寫
 //     return this.myName;
 //   }
 // }
@@ -46,8 +47,12 @@ console.log(obj.fn());
 // console.log(obj3.fn());
 
 // #2-2 物件內的變數
+// const name = '小明'
+// function fn() {
+//  return this.name 
+// }
 // const person = {
-//   name: '小明'
+//   name
 // };
 
 
@@ -58,6 +63,8 @@ console.log(obj.fn());
 // #3-1 不同陣列合併
 const groupA = ['小明', '杰倫', '阿姨'];
 const groupB = ['老媽', '老爸'];
+const groupC = groupA.concat(groupB)
+const groupD = [...groupA, ...groupB]
 
 
 // #3-2 物件擴展
@@ -69,6 +76,17 @@ const methods = {
     console.log(1);
   },
 }
+const newMethods1 = methods 
+newMethods1.fn3 = function f() {
+  console.log(3)
+}
+
+const newMethods2 = {
+  ...methods,
+  fn3() {
+    console.log(3)
+  }
+}
 
 
 // #3-3 轉成純陣列
@@ -79,10 +97,12 @@ const methods = {
 const doms = document.querySelectorAll('li');
 console.log(doms); // 請轉為純陣列
 
+const newDoms = [...doms]
+newDoms.map((i) => i)
 
 
 // #4 預設值
-// function sum(a, b) { // 請加入預設值避免錯誤
+// function sum(a = 0, b = 0) { // 請加入預設值避免錯誤
 //   return a + b;
 // }
 // console.log(sum(1));
