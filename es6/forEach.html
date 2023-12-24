@@ -32,17 +32,43 @@ const people = [
 // https://www.youtube.com/watch?v=_vFuDQ_6Xt8
 
 // #2. 操作所有陣列內的值（同一個陣列）
+// people.forEach((item, i , array) => {
+//   console.log(item, i, array)
+// })
 
 
 // #3. 重新建立新的陣列
+// const order = people.map((item, i) => ({
+//     price: item.price * 0.8,
+//     title: item.like
+// }))
+// console.log(order)
 
 
 // #4 map 使用注意事項
 
+
 // 當直接回傳時，會出現 undefined 的內容
+// const order = people.map((item, i) => {
+//   if (item.price > 60) {
+//     return {
+//       price: item.price * 0.8,
+//       title: item.like
+//     }
+//   }
+// })
+// console.log(order)
+
 
 
 // 解法
+// const order = people
+//   .filter((item, i) => item.price > 60)
+//   .map((item, i) => ({
+//     price: item.price * 0.8,
+//     title: item.like
+//   }))
+// console.log(order)
 
 
 // #5 map 在 React 中的運用
@@ -71,7 +97,11 @@ const App = ()=> {
   ];
   return <div>
     <ul>
-      
+      {
+        people.map((item, i) => {
+          return <li key={i}>{item.name} 喜歡吃 {item.like}</li>
+        })
+      }
     </ul>
   </div>
 }
