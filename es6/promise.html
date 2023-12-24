@@ -9,16 +9,16 @@
 // #1 非同步的觀念
 // function getData() {
 //   setTimeout(() => {
-//     console.log('... 已取得遠端資料');
+//     console.log('... 已取得遠端資料'); // 3
 //   }, 0);
 // }
 // // 請問取得資料的順序為何
 // function init() {
-//   console.log(1);
+//   console.log(1); // 1
 //   getData();
-//   console.log(2);
+//   console.log(2); // 2
 // }
-//
+
 // init();
 
 // 更正確的說法，Promise 是為了解決傳統非同步語法難以建構及管理的問題，如有興趣可搜尋 "callback hell js"
@@ -32,17 +32,41 @@ const promiseSetTimeout = (status) => {
       } else {
         reject('promiseSetTimeout 失敗')
       }
-    }, 0);
+    }, 1000);
   })
 }
 
 // #2-1 基礎運用
+// console.log(1)
+// promiseSetTimeout(true)
+//   .then((res) => {
+//     console.log(res)
+//     console.log(2)
+//   })
+
 
 
 // #2-2 串接
+// console.log(1)
+// promiseSetTimeout(true)
+//   .then((res) => {
+//     console.log(res)
+//     console.log(2)
+//     return promiseSetTimeout(1)
+//   })
+//   .then((res) => {
+//     console.log(res)
+//     console.log(3)
+//   })
+
 
 
 // #2-3 失敗捕捉
+// promiseSetTimeout(0)
+//   .then(res => console.log(res))
+//   .catch(err => {
+//     console.log(err)
+//   })
 
 
 // #3 實戰取得遠端資料
