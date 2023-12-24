@@ -5,11 +5,25 @@
 <!-- 🔥🔥練習開始🔥🔥 -->
 <div id="root"></div>
 <!-- template：https://getbootstrap.com/docs/5.2/components/card/ -->
+
 <script type="text/babel">
 console.log(React, ReactDOM);
 
+function App() {
+  return <div class="card">
+  <img src="https://plus.unsplash.com/premium_photo-1675098654728-ad113d7db26e?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="..." />
+  <div className="card-body">
+    <h5 className="card-title">Card title</h5>
+    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" className="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+}
 
 const el = document.getElementById('root');
+const root = ReactDOM.createRoot(el)
+
+root.render(<App />)
 </script>
 
 <!-- 🙇🙇練習結束🙇🙇 -->
