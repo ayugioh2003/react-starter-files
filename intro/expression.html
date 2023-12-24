@@ -9,27 +9,14 @@
 <!-- 表達語句：
   https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Guide/Expressions_and_Operators
 -->
+
 <script>
-// 表達式與陳述式的差異
-// 陳述式 多個單字、幾行句子
-// 表達式 1~5 個字左右的單字 (會回傳值)
-var a = 1 // 陳述
-a = 2 // 表達
+  // 宣告
+  function fn() {}
 
-true && true // 陳述
-if (true) console.log // 表達
-
-
-// 為什麼要了解表達式
-// JSX 要用表達式
-
-var condition = true 
-console.log(condition ? '我餓了' : '我沒有餓') // 表達
-console.log(condition ? text = '我餓了' : '我沒有餓') // 不好的寫法
-const text = condition ? '我餓了' : '我沒有餓'
-
+  // 表達
+  const fn2 = function() {}
 </script>
-
 
 <script type="text/babel">
 function App() {
@@ -45,6 +32,11 @@ function App() {
       <h5 className="card-title">{ data.name }</h5>
       <p className="card-text">{ data.description }</p>
       <a href={data.link} target="_blank" className="btn btn-primary">Go somewhere</a>
+      <br />
+      { 0 | 123 },
+      { 0 ? 0 : 1},
+      {/* if (1) { } */}
+      { function() { return 2 * 2 }() }
     </div>
   </div>
 }
