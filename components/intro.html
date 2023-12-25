@@ -9,7 +9,25 @@
   const App = () => {
     return (
       <>
-        React
+        <Header imgUrl="https://images.unsplash.com/photo-1682686578023-dc680e7a3aeb?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+        <div className="row">
+          <div className="col-4">
+            <Sidebar list={['Ming', 'Jay', 'Pretty Auntie']} />  
+          </div>  
+          <div className="col-8">
+            <ChartJs
+              data={[
+                { label: '小明', value: 1000 },
+                { label: '杰倫', value: 10000 },
+                { label: '漂亮阿姨', value: 3000 },
+                { label: '卡斯伯', value: 2500 },
+              ]}
+            />  
+          </div>
+        </div>
+        <Footer>
+          這是一段 Footer
+        </Footer>
       </>
     );
   };
