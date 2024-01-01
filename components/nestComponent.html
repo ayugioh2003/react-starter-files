@@ -5,13 +5,14 @@
 <!-- 🔥🔥練習開始🔥🔥 -->
 <div id="root"></div>
 <script type="text/babel">
-  const PrimaryButton = ({ className, callToAction }) => {
+  const PrimaryButton = ({ className, children }) => {
+    console.log('children', children)
     return (
       <button 
         type="button" 
         className={`btn ${className}`}
       >
-        {callToAction}
+        {children}
       </button>
     ) 
   }
@@ -31,8 +32,12 @@
         <p>{content}</p>
         {
           title === '企業版' ? 
-            <PrimaryButton className="btn-primary" callToAction={callToAction} /> :
-            <PrimaryButton className="btn-outline-primary" callToAction={callToAction} />
+            <PrimaryButton className="btn-primary"> 
+              <i className="bi bi-gem"></i> <small>{callToAction}</small> <i className="bi bi-gem"></i>
+            </PrimaryButton>:
+            <PrimaryButton className="btn-outline-primary">
+              {callToAction}
+            </PrimaryButton>
         }
       </div>
     </div>)
