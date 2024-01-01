@@ -45,14 +45,15 @@
     <>
       <h3>案例一：當 key 不是唯一值時</h3>
       {/* 當 key 不是唯一值時 */}
-      {
+      {/*
         products.map((product, index) => {
           return <div key={product.price}>{product.title} {product.price}
             <input type="text" />
           </div>
         })
-      }
+      */}
       <button type="button" onClick={handleDoublePrice}>雙倍金額</button>
+
       
       <h3>案例二：當 key 為陣列索引時</h3>
       {/* 當 key 為陣列索引時*/}
@@ -67,13 +68,13 @@
       <button type="button" onClick={handleNewProduct}>新增</button>
 
       <h3>建議：key 為唯一值</h3>
-      {/*
+      {
         products.map((product, index) => {
           return <div key={product.id}>{product.title} {product.price}
             <input type="text" />
           </div>
         })
-      */}
+      }
     </>
   )
 }
