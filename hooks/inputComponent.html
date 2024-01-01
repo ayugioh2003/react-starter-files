@@ -6,10 +6,37 @@
 <!--  -->
 <div id="root"></div>
 <script type="text/babel">
+// #1 取出 useState 方法
+const { useState } = React
+
+const SearchBox = ({ id, text, onSearchHandler }) => {
+  return <>
+    <label htmlFor="{id}">搜尋</label>
+    <input 
+      id="{id}" 
+      type="text" 
+      className="form-control"
+      value={text} 
+      onChange={onSearchHandler} />
+  </>
+}
 
 const App = () => {
+  // const text = '這裡有一行文字'
+  // #2 定義狀態
+  const [text, setText] = useState('這是一段文字')
+
+  const onSearchHandler = (e) => {
+    console.log(e.target.value)
+    setText(e.target.value)
+  }
+
+
   return (<div>
-    
+    <SearchBox text={text} onSearchHandler={onSearchHandler} id="id2" />
+    <hr />
+    <div>{text}</div>
+
   </div>)
 }
 
