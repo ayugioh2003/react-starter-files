@@ -6,10 +6,20 @@
 <div id="root"></div>
 <script type="text/babel">
 // #1 取出 useState 的方法
+const { useState } = React
 
 const App = () => {
   // #2 定義狀態
+  // let num = 0
+  // 前者是變數，後者是一個函式
+  const [ num, setNum ] = useState(0)
+
   return (<div>
+    { num }
+    <button type="button" onClick={() => {
+      setNum(num + 1)
+      console.log('num', num)
+    }}>{ num }</button>
     {/* 使用 set 將值寫入 */}
     </div>)
 }
