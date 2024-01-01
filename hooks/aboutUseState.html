@@ -5,18 +5,51 @@
 <!-- 🔥🔥練習開始🔥🔥 -->
 <div id="root"></div>
 <script type="text/babel">
+const { useState } = React
+
 // #1 useState 的方法在哪裡？
+// function useCustomState(params) {
+//   // 純值，方法(通知元件，值已經更新)
+//   return [params, function dispatchSetState() {}]
+// }
+
+// const [text, setText] = useCustomState('這是一段文字')
+
 
 // #2 useState 僅能在 Component 內運作
+// const [text, setText] = useState('這是一段文字')
+// 會噴錯，因為不在元件裡面
+
 
 
 // #3 state 是 ReadOnly
 // #3-1 為了讓 React 知道資料已更新，所以會使用另一個方法進行觸發
 const App = () => {
+  const [num, setNum] = useState(1)
   // #3-2 這影響了許多會操作原始值的方法
 
+  const [arr, setArr] = useState([1,2,3])
+  function removeArrData(params) {
+    // pop 移除陣列最後一個值，並將值回傳
+    // arr.pop 會噴錯
+    // setArr(arr.filter((item, index) => index !== arr.length - 1))
+    setArr(arr.toSpliced(-1, 1))
+  }
+  function addArrData() {
+    setArr([...arr, arr.length + 1])
+  }
+
   return (<div>
-    
+    <button type="button" onClick={() => setNum(num + 1)}>{num}</button>
+    <ul>
+      {
+        arr.map((i) => {
+          return <li key={i}>{i}</li>
+        })
+      }  
+    </ul>
+    <button type="button" onClick={removeArrData}>移除陣列資料</button>
+    <button type="button" onClick={addArrData}>新增陣列資料</button>
   </div>)
 }
 
