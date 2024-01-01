@@ -20,7 +20,8 @@ const Card = (props) => {
       </div>
       <div className="card-body">
         <h1 className="card-title">
-          { typeof props.price === 'number' 
+          { 
+            typeof props.price === 'number' 
               ? <>${props.price}/<small>月</small></> 
               : props.price
           }
@@ -53,7 +54,7 @@ const App = () => {
 
       <Card 
         title="企業版"
-        price={'請洽客服'}
+        price="請洽客服"
         content="多少人數均可訂製，5 ~ 1000 人團體均適用"
         callToAction="大吃大喝方案"
       />
