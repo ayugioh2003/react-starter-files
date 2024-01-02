@@ -44,16 +44,47 @@ const App = () => {
 
 
   // 加入 state 作為條件
-  useEffect(() => {
-    console.log(3)
-  }, [filterString, text])
+  // useEffect(() => {
+  //   console.log(3)
+  // }, [filterString, text])
 
 
-  // #2 useEffect 的限制，不可在 if 內使用
+  // #2 useEffect 的限制，不可在 if 內使用。不然會噴錯
+  // if (filterString === 'animal') {
+  //   useEffect(() => {
+  //     console.log(4)
+  //   }, [filterString])
+  // }
 
 
   // #3 非同步
   // useEffect callback 本身不能作為 async function 使用
+  // useEffect(() => {
+  //   const getPhotos = async () => {
+  //     console.log(`${api}?client_id=${accessKey}&query=${filterString}`)
+  //     const result = await axios.get(`${api}?client_id=${accessKey}&query=${filterString}`)
+  //     console.log('result', result)
+  //   }
+  //   getPhotos()
+  // }, [])
+  useEffect(() => {
+    // const getPhotos = async () => {
+    //   console.log(`${api}?client_id=${accessKey}&query=${filterString}`)
+    //   const result = await axios.get(`${api}?client_id=${accessKey}&query=${filterString}`)
+    //   console.log('result', result)
+    // }
+    // getPhotos()
+
+    (async () => {
+      try {
+        console.log(`${api}?client_id=${accessKey}&query=${filterString}`)
+        const result = await axios.get(`${api}?client_id=${accessKey}&query=${filterString}`)
+        console.log('result', result)
+      } catch (error) {
+        console.error(error)
+      }
+    })()
+  }, [])
 
   
   return (<div>
