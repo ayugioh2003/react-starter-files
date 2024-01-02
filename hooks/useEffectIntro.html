@@ -10,7 +10,7 @@
 const { useState, useEffect } = React;
 const api = 'https://api.unsplash.com/search/photos/';
 // const accessKey = 'GAvxZ9VesndxTx_9NftqgOtZffnTB0YhfGiWGDJA-bs'; // 老師暫時的
-const accesskey = 'Io3XnCn8o6RSVbqEEwlp-q35Id9hprknbulaolKKK3Q' // 要自己申請
+const accessKey = 'Io3XnCn8o6RSVbqEEwlp-q35Id9hprknbulaolKKK3Q' // 要自己申請
 
 const SearchBox = ({onSearchHandler, filterString}) => {
   return <div>
@@ -30,8 +30,25 @@ const App = () => {
   }
 
   // #1 建立非同步方法時，會因為渲染的關係不斷重複觸發
+  // const getPhotos = async () => {
+  //   console.log(`${api}?client_id=${accessKey}&query=${filterString}`)
+  //   const result = await axios.get(`${api}?client_id=${accessKey}&query=${filterString}`)
+  //   console.log('result', result)
+  // }
+  // getPhotos()
 
   // #2 useEffect
+  // callback function, 陣列條件
+  // 陣列中沒有塞任何東西，只會執行一次
+  // 有塞其他條件，在每次有條件更新的情況，再觸發 useEffect
+  useEffect(() => {
+    const getPhotos = async () => {
+      console.log(`${api}?client_id=${accessKey}&query=${filterString}`)
+      const result = await axios.get(`${api}?client_id=${accessKey}&query=${filterString}`)
+      console.log('result', result)
+    }
+
+  }, [])
 
   return (<div>
     {console.log(2)}
