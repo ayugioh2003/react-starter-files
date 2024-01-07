@@ -4,15 +4,52 @@
 <!-- 章節標題 --><div class="mb-4"><h1 class="mt-0 text-muted">Bootstrap 元件與 React</h1><small>檔名：<code>bootstrapComponent.html</code></small></div>
 <!-- 🔥🔥練習開始🔥🔥 -->
 <!-- 原生 Bootstrap  -->
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" id="btnModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
   // ## Modal
   // // #1 生成實體
+  var myModal = new bootstrap.Modal(document.getElementById('exampleModal'))
 
   // // #2 套用實體方法
+  // .show()  .hide()
+  const btn = document.querySelector('#btnModal')
+  btn.addEventListener('click', () => myModal.show())
 
   // #3 套用監聽
+  const myModalEl = document.getElementById('exampleModal')
+  myModalEl.addEventListener('shown.bs.modal', event => {
+    console.log('Modal 已經領域展開')
+  })
+  myModalEl.addEventListener('hidden.bs.modal', event => {
+    console.log('Modal 已經被獄門疆給封印了')
+  })
 </script>
 <!--  -->
+
+
 <div id="root"></div>
 <script type="text/babel">
 const { useState, useEffect } = React;
@@ -54,8 +91,8 @@ const App = () => {
   );
 }
 
-ReactDOM.createRoot(document.querySelector('#root'))
-  .render(<App/>)
+// ReactDOM.createRoot(document.querySelector('#root'))
+//   .render(<App/>)
 </script>
 
 
