@@ -16,7 +16,7 @@
 <script type="text/babel">
 const { useState, useEffect, useRef } = React;
 
-let myModal
+// let myModal
 const App = () => {
   // #2 使用 useRef
   // const btnRef = useRef(null)
@@ -26,13 +26,27 @@ const App = () => {
   // })
 
   // 3 操作 Bootstrap 改為使用 ref
-  const modalRef = useRef(null)
+  const modalRef = useRef(null) // 某個 HTML 的元素
+  const myModal = useRef(null) // BS 的 modal JS 物件。避免值被刷新
+
   const openModal = () => {
-    myModal.show()
+    myModal.current.show()
   }
   useEffect(() => {
-    myModal = new bootstrap.Modal(modalRef.current)
+    myModal.current = new bootstrap.Modal(modalRef.current)
   })
+
+  // 4
+  const [num, setNum] = useState(1) // 使用 setNum 更新值時，會刷新元件
+  const num2 = useRef(1) // 單純改值的話，不會刷新元件狀態，因此值不會更新
+  console.log('num' , num)
+  console.log('num2', num2)
+  useEffect(() => {
+    setInterval(() => {
+      // setNum((pre) => pre + 1)
+      num2.current = num2.current + 1
+    }, 500);
+  }, [])
 
 
   return (
