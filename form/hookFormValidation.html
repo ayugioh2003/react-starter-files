@@ -40,11 +40,14 @@
             <input
               id='username'
               type='text'
-              {...register('username', { required: true })}
+              {...register('username', { required: {
+                value: true,
+                message: '使用者名稱為必填'
+              } })}
               className={`form-control ${errors.username && 'is-invalid'}`}
             />
             {errors.username && (
-              <div className='invalid-feedback'>使用者名稱為必填</div>
+              <div className='invalid-feedback'>{errors?.username?.message}</div>
             )}
           </div>
           <div className='mb-3'>
@@ -54,9 +57,21 @@
             <input
               id='email'
               type='text'
-              {...register('email')}
+              {...register('email', {
+                required: {
+                  value: true,
+                  message: 'Email 為必填'
+                },
+                pattern: {
+                  value: /^\S+@\S+$/i,
+                  message: 'email 格式錯誤'
+                }
+              })}
               className={`form-control ${errors.email && 'is-invalid'}`}
             />
+            {errors.email && (
+              <div className='invalid-feedback'>{errors?.email?.message}</div>
+            )}
           </div>
           <div className='mb-3'>
             <label htmlFor='tel' className='form-label'>
@@ -65,9 +80,26 @@
             <input
               id='tel'
               type='tel'
-              {...register('tel')}
+              {...register('tel', {
+                required: {
+                  value: true,
+                  message: '電話 為必填'
+                },
+                minLength: {
+                  value: 6,
+                  message: '電話不少於 6 碼'
+                },
+                maxLength: {
+                  value: 6,
+                  message: '電話不多於 12 碼'
+                }
+                
+              })}
               className={`form-control ${errors.tel && 'is-invalid'}`}
             />
+            {errors.tel && (
+              <div className='invalid-feedback'>{errors?.tel?.message}</div>
+            )}
           </div>
           <div className="mb-3"> 
             <div className="form-check">
