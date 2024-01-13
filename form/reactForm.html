@@ -7,21 +7,56 @@
 <script type="text/babel">
 const { useState } = React
 const App = () => {
+  const [ inputState, setInputState] = useState('casper')
+
+  // Select
+  const optionList = ['台北', '台中', '高雄']
+  const [selectState, setSelectState] = useState('')
+
+  // multi select
+  const [selectMultiState, setSelectMultiState] = useState([])
+  const selectHandler = e => {
+      // console.dir(e);
+      const arr = [...e.target.selectedOptions].map(location => location.value)
+      setSelectMultiState(arr)
+    }
+
 
   return (<div>
   {/* #1 input */}
   <label htmlFor="username">使用者名稱 </label>
-  <input id="username" type="text"/>
+  <input id="username" type="text" value={inputState} onChange={e => setInputState(e.target.value)} />
+  {inputState}
+  <br />
 
   {/* #2 select 選擇、預設值 */}
-  <select name="" id="" >
-    <option value="" disabled>-- 請選擇地區 --</option>
+  <select name="city" id="city" value={selectState} onChange={e => setSelectState(e.target.value)}>
+    <option value="" disabled >-- 請選擇地區 --</option>
+    {
+      optionList.map(location => {
+        return <option value={location} key={location}>{location}</option>
+      })
+    }
   </select>
+  {selectState}
+  <br />
 
   {/* #3 multiSelect */}
-  <select name="" id="">
-
+  <select 
+    name="cityList" 
+    id="cityList" 
+    onChange={selectHandler} 
+    value={selectMultiState}
+    multiple={true}
+  >
+    <option value="" disabled >-- 請選擇地區 --</option>
+    {
+      optionList.map(location => {
+        return <option value={location} key={location}>{location}</option>
+      })
+    }
   </select>
+  {JSON.stringify(selectMultiState)}
   </div>)
 }
 
